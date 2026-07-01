@@ -1,0 +1,147 @@
+:root {
+    --bg: #f1f3f6;
+    --card: white;
+    --text: black;
+}
+
+.dark {
+    --bg: #121212;
+    --card: #1e1e1e;
+    --text: white;
+}
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI';
+    background: var(--bg);
+    color: var(--text);
+    transition: 0.3s;
+    background: linear-gradient(90deg,#e8eedd,#eeeeb9);
+
+}
+
+/* NAVBAR */
+.navbar {
+    backdrop-filter: blur(10px);
+    background: rgba(248, 100, 51, 0.9);
+    color: rgb(255, 254, 254);
+    padding: 12px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.left {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.back {
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.right {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+/* ICON */
+.icon {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    position: relative;
+}
+
+.icon:hover {
+    transform: scale(1.05);
+}
+
+/* DROPDOWN */
+.dropdown {
+    display: none;
+    position: absolute;
+    top: 30px;
+    right: 0;
+    background: white;
+    color: black;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    min-width: 140px;
+    z-index: 100;
+    animation: fade 0.2s ease;
+}
+
+.dropdown div {
+    padding: 8px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.dropdown div:hover {
+    background: #f1f1f1;
+}
+
+/* BADGE */
+.badge {
+    position: absolute;
+    top: -6px;
+    right: -10px;
+    background: red;
+    color: white;
+    font-size: 11px;
+    padding: 2px 6px;
+    border-radius: 50%;
+}
+
+/* MAIN */
+.main {
+    display: flex;
+    padding: 30px;
+    gap: 20px;
+}
+
+.cart-box, .price-box {
+    background: var(--card);
+    padding: 20px;
+    border-radius: 12px;
+}
+
+/* ITEM */
+.item {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #eee;
+    padding: 15px 0;
+    animation: fade 0.3s ease;
+}
+
+.item:hover {
+    transform: translateX(5px);
+}
+
+.remove {
+    color: red;
+    cursor: pointer;
+}
+
+/* EMPTY / LOGIN */
+.empty, .login-block {
+    text-align: center;
+    margin-top: 120px;
+}
+
+/* TOGGLE */
+.toggle {
+    cursor: pointer;
+}
+
+@keyframes fade {
+    from {opacity:0; transform: translateY(10px);}
+    to {opacity:1; transform: translateY(0);}
+}
