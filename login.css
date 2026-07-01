@@ -1,0 +1,100 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.back-arrow {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 22px;
+    color: black;
+    text-decoration: none;
+}
+
+.back-arrow:hover {
+    color: #f38022;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: scale(0.92);
+    transform-origin: centre;
+    background:
+        linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5)),
+        url("https://iiitbh.ac.in/sites/default/files/2020-05/Proposed%20IIIT%20Bhagalpur%20Building1.jpg")
+        no-repeat center center/cover;
+        background-size:cover;
+        background-position: center;
+
+}
+
+/* Main Box */
+.container {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 40px;
+    border-radius: 12px;
+    height:320px;
+    width: 500px;        
+    
+    text-align: center;
+    box-shadow: 0 0 45px rgba(0,0,0,0.3);
+}
+
+/* Heading */
+.container h2 {
+    margin-bottom: 15px;
+}
+
+input {
+    display: block;
+    width: 95%;        /* thoda bada */
+    padding: 10px;     /* pehle 8 tha → ab thoda comfortable */
+    margin: 20px auto;
+    font-size: 15px;   /* text thoda bada */
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+button {
+    display: block;
+    width: 95%;
+    padding: 10px;
+    margin: 10px auto;
+    font-size: 15px;
+    border-radius: 5px;
+    background: #ff9800;
+    color: white;
+    border: none;
+}
+
+/* Hover effect */
+button:hover {
+    background: #e68900;
+}
+
+/* OTP hidden initially */
+#otpBox {
+    display: none;
+}
+
+p {
+    font-size: 14px;
+}
+
+a {
+    color: blue;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
