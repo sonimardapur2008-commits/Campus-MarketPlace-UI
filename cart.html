@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Cart</title>
+<link rel="stylesheet" href="cart.css">
+
+</head>
+<body>
+<div class="navbar">
+    <div class="left">
+        
+        <div class="back" onclick="window.location.href='../main/index.html'">⬅</div>
+        <div style="font-weight:600;">Campus Marketplace</div>
+    </div>
+
+    <div class="right">
+        <!-- DARK MODE -->
+        <div class="toggle" onclick="toggleDark()">🌙</div>
+
+        <!-- ACCOUNT -->
+        <div class="icon" onclick="toggleMenu(event)">
+            👤 <span id="userText">Login</span>
+
+            <div id="dropdown" class="dropdown">
+                <!-- <div onclick="goAccount()">My Account</div> -->
+                 <div onclick="window.location.href='../Account/account.html'">My Account</div>
+                <div onclick="logout()" style="color:red;">Logout</div>
+            </div>
+        </div>
+
+        <!-- CART -->
+        <div class="icon" onclick="goCart()">
+            🛒
+            <span id="cartCount" class="badge">0</span>
+        </div>
+    </div>
+</div>
+
+<div id="app"></div>
+<script src="cart.js"></script>
+
+
+</body>
+</html>
