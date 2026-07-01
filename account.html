@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Account</title>
+<style>
+
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    transition:all 0.25s ease;
+}
+
+body{
+    font-family:'Segoe UI',sans-serif;
+    background:#f4f6f8;
+    color:#333;
+}
+
+
+.navbar{
+    background:#ff7a00;
+    color:white;
+    padding:16px 40px;
+    font-size:20px;
+    font-weight:600;
+    display:flex;
+    justify-content:space-between;
+}
+
+
+.dark{
+    background:#1e1e1e;
+    color:white;
+}
+.dark .card{background:#2c2c2c;}
+.dark .sidebar{background:#2a2a2a;}
+
+
+.container{
+    display:flex;
+    padding:20px;
+    gap:20px;
+}
+
+
+.sidebar{
+    width:260px;
+    background:#e6f4ea;
+    border-radius:12px;
+    padding:15px;
+}
+
+.sidebar li{
+    list-style:none;
+    padding:12px;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:15px;
+}
+
+.sidebar li:hover,
+.sidebar li.active{
+    background:#ffd6e8;
+    font-weight:600;
+}
+
+
+.content{flex:1;}
+
+
+.card{
+    background:white;
+    padding:20px;
+    border-radius:12px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.08);
+    margin-bottom:20px;
+}
+
+
+.profile-container{
+    display:flex;
+    gap:20px;
+}
+
+.profile-left{
+    flex:1;
+    background:#e6f4ea;
+    padding:20px;
+    border-radius:12px;
+    text-align:center;
+}
+
+.profile-left img{
+    width:90px;
+    height:90px;
+    border-radius:50%;
+    object-fit:cover;
+}
+
+.profile-left h2{margin-top:10px;}
+
+.info-box{
+    margin-top:15px;
+    background:#ffd6e8;
+    padding:10px;
+    border-radius:10px;
+    text-align:left;
+}
+
+
+.profile-right{
+    flex:1;
+    background:#fff3e6;
+    padding:20px;
+    border-radius:12px;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.profile-right input{
+    padding:10px;
+    border-radius:6px;
+    border:1px solid #ccc;
+    font-size:14px;
+}
+
+.profile-right input:focus{
+    border-color:#ff7a00;
+    outline:none;
+}
+
+
+.btn{
+    background:#ff7a00;
+    color:white;
+    padding:10px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:500;
+}
+
+
+.stats{
+    display:flex;
+    gap:10px;
+    margin-top:15px;
+}
+
+.stat-card{
+    flex:1;
+    background:#fff3e6;
+    padding:15px;
+    border-radius:10px;
+    text-align:center;
+}
+
+
+.quick-actions{
+    margin-top:15px;
+    background:#e6f4ea;
+    padding:15px;
+    border-radius:10px;
+}
+
+.quick-actions button{
+    margin:5px;
+    padding:10px;
+    border:none;
+    border-radius:6px;
+    background:#ff7a00;
+    color:white;
+    cursor:pointer;
+}
+
+
+.main-footer {
+    background-color: #212121 !important; /* Forcefully dark background */
+    color: #ffffff !important;
+    padding: 40px 0 0 0;
+    font-size: 12px;
+    width: 100%;
+}
+
+.footer-container {
+    display: flex !important; /* Ensure flexbox works */
+    flex-direction: row !important; /* Force them to be side-by-side on desktop */
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px 30px 20px;
+}
+
+.footer-col {
+    flex: 1;
+    min-width: 150px;
+    text-align: left !important; 
+}
+
+
+.footer-col ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-col h3 {
+    color: #878787;
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    text-align: left !important;
+}
+
+.footer-col ul li a {
+    color: #fff !important;
+    text-decoration: none;
+    display: block; 
+    padding: 3px 0;
+}
+
+
+.footer-bottom {
+    background-color: #172337; 
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+html, body{
+    height:100%;
+}
+
+body{
+    display:flex;
+    flex-direction:column;
+}
+
+.container{
+    flex:1;
+}
+
+
+
+
+
+.order{
+    display:flex;
+    justify-content:space-between;
+    border-bottom:1px solid #eee;
+    padding:8px 0;
+}
+
+
+.success{
+    color:green;
+    display:none;
+    font-size:14px;
+}
+
+</style>
+</head>
+
+<body>
+    <a href="../Main/index.html" class="back-arrow">
+        <i class="fas fa-arrow-left"></i>
+    </a>
+
+<div class="navbar">
+    <span onclick="goHome()" style="cursor:pointer;font-size:22px;">⬅</span>
+    My Account
+    <button onclick="toggleDark()">🌙</button>
+</div>
+ 
+
+<div class="container">
+
+
+<div class="sidebar">
+    <ul>
+        <li onclick="showSection('dashboard',this)" class="active">Dashboard</li>
+        <li onclick="showSection('profile',this)">Profile</li>
+        <li onclick="showSection('orders',this)">Orders</li>
+        <li onclick="showSection('wishlist',this)">Wishlist</li>
+        <li onclick="showSection('coins',this)">Rewards</li>
+        <li onclick="showSection('address',this)">Addresses</li>
+        <li onclick="logout()">Logout</li>
+    </ul>
+</div>
+
+
+<div class="content">
+
+
+<div id="dashboard" class="card">
+    <h3>Overview</h3>
+
+    <div class="stats">
+        <div class="stat-card"><h4>Total Orders</h4><p id="orderCount">0</p></div>
+        <div class="stat-card"><h4>Wishlist Items</h4><p id="wishCount">0</p></div>
+        <div class="stat-card"><h4>Reward Points</h4><p id="coinCount">0</p></div>
+    </div>
+
+    <div class="quick-actions">
+        <button onclick="showSection('orders')">View Orders</button>
+        <button onclick="showSection('wishlist')">View Wishlist</button>
+        <button onclick="showSection('coins')">View Rewards</button>
+    </div>
+</div>
+
+
+<div id="profile" class="card" style="display:none;">
+<div class="profile-container">
+
+<div class="profile-left">
+    <img id="profilePic" src="https://i.pinimg.com/736x/8a/fe/34/8afe349691d0b88eb379ac9ed7cdaeeb.jpg">
+    <input type="file" id="imgInput">
+    <p id="fileName" style="font-size:13px;color:#666;margin-top:5px;">
+    No file chosen
+    </p>
+
+    <h2 id="name">Full Name</h2>
+    <p id="email">email@example.com</p>
+
+    <div class="info-box">
+        <p><b>Phone:</b> <span id="phone">Not provided</span></p>
+        <p><b>Institution:</b> <span id="college">Not provided</span></p>
+    </div>
+</div>
+
+<div class="profile-right">
+    <h3>Edit Information</h3>
+
+    <input id="nameInput" placeholder="Enter your full name">
+    <input id="emailInput" placeholder="Enter your email address">
+    <input id="phoneInput" placeholder="Enter your phone number">
+    <input id="collegeInput" placeholder="Enter your college / organization">
+
+    <button class="btn" onclick="saveProfile()">Save Changes</button>
+    <p id="saveMsg" class="success">Profile updated successfully</p>
+</div>
+
+</div>
+</div>
+
+
+<div id="orders" class="card" style="display:none;">
+<h3>Order History</h3>
+<div id="orderList"></div>
+</div>
+
+
+<div id="wishlist" class="card" style="display:none;">
+<h3>Your Wishlist</h3>
+<div id="wishList"></div>
+</div>
+
+
+<div id="coins" class="card" style="display:none;">
+<h3>Reward Points</h3>
+<p id="coinDisplay"></p>
+</div>
+
+
+<div id="address" class="card" style="display:none;">
+<h3>Saved Addresses</h3>
+<p>Campus Residence,IIIT Bhagalpur</p>
+</div>
+
+</div>
+</div>
+
+
+    <footer class="main-footer" style="background-color: #f1f3f6;">
+        <div class="footer-container">
+            
+            <div class="footer-col">
+                <span><b>About:</b></span>
+                <ul>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Stories</a></li>
+                    <li><a href="#">Press</a></li>
+                    <li><a href="#">Corporate Information</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <span><b>Help:</b></span>
+                <ul>
+                    <li><a href="#">Payments</a></li>
+                    <li><a href="#">Shipping</a></li>
+                    <li><a href="#">Cancellation & Returns</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <span><b>Consumer Policy:</b></span>
+                <ul>
+                    <li><a href="#">Cancellation & Returns</a></li>
+                    <li><a href="#">Terms Of Use</a></li>
+                    <li><a href="#">Security</a></li>
+                    <li><a href="#">Privacy</a></li>
+                    <li><a href="#">Sitemap</a></li>
+                </ul>
+            </div>
+
+            <div class="vertical-divider"></div>
+
+            <div class="footer-col address-col">
+                <span><b>Mail Us:</b></span><br>
+                <p><br>aastha.250101005@iiitbh.ac.in<br>
+                bhavya.250101049@iiitbh.ac.in<br>
+                ekta.250101061@iiitbh.ac.in<br>
+                govind.250101063@iiitbh.ac.in<br>
+                soni.250101151@iiitbh.ac.in<br>
+                Bihar, India</p>
+            </div>   
+
+
+            <div class="footer-col address-col">
+                <span><b>Address:</b></span>
+                <p><br>CampusMarketplace internet limited,<br>
+                IIIT Bhagapur,<br>
+                Sabour Road, Bhagalpur,<br>
+                Bihar,India<br>
+            </div>
+
+            
+            
+
+            
+        </div>
+    </footer>
+
+
+
+<script>
+const imgInput = document.getElementById("imgInput");
+const profilePic = document.getElementById("profilePic");
+
+function goHome(){
+    window.location.href = "../main/index.html";
+}
+
+/* DARK MODE */
+function toggleDark(){
+    document.body.classList.toggle("dark");
+}
+
+/* PROFILE */
+let user = JSON.parse(localStorage.getItem("user")) || {};
+
+function loadProfile(){
+    document.getElementById("name").innerText = user.name || "Full Name";
+    document.getElementById("email").innerText = user.email || "email@example.com";
+    document.getElementById("phone").innerText = user.phone || "Not provided";
+    document.getElementById("college").innerText = user.college || "Not provided";
+
+    document.getElementById("nameInput").value = user.name || "";
+    document.getElementById("emailInput").value = user.email || "";
+    document.getElementById("phoneInput").value = user.phone || "";
+    document.getElementById("collegeInput").value = user.college || "";
+}
+loadProfile();
+ 
+function saveProfile(){
+    user = {
+        name: document.getElementById("nameInput").value,
+        email: document.getElementById("emailInput").value,
+        phone: document.getElementById("phoneInput").value,
+        college: document.getElementById("collegeInput").value
+    };
+
+    localStorage.setItem("user", JSON.stringify(user));
+
+    loadProfile();
+
+    document.getElementById("saveMsg").style.display="block";
+    setTimeout(()=>document.getElementById("saveMsg").style.display="none",2000);
+}
+
+
+/* IMAGE */
+imgInput.onchange = function(){
+    let reader = new FileReader();
+    reader.onload = e=>{
+        localStorage.setItem("profilePic", e.target.result);
+        profilePic.src = e.target.result;
+    };
+    reader.readAsDataURL(this.files[0]);
+};
+if(localStorage.getItem("profilePic")){
+    profilePic.src = localStorage.getItem("profilePic");
+    document.getElementById("fileName").innerText = "Image uploaded ✅";
+}
+ 
+/* SECTION SWITCH */
+function showSection(section,el){
+     ["dashboard","profile","orders","wishlist","coins","address"]
+     .forEach(s=>document.getElementById(s).style.display="none");
+
+     document.getElementById(section).style.display="block";
+
+     document.querySelectorAll(".sidebar li").forEach(li=>li.classList.remove("active"));
+     if(el) el.classList.add("active");
+}
+
+/* DATA SYSTEM */
+let orders = JSON.parse(localStorage.getItem("orders")) || [];
+let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+let coins = parseInt(localStorage.getItem("coins")||"320");
+
+/* LOAD ORDERS */
+orders.forEach(o=>{
+    orderList.innerHTML += `<div class="order"><span>${o.item}</span><span>${o.price}</span></div>`;
+});
+
+/* WISHLIST */
+if(wishlist.length===0){
+    wishList.innerHTML="<p>No saved items</p>";
+}else{
+    wishlist.forEach(i=> wishList.innerHTML+=`<p>• ${i}</p>`);
+}
+
+/* COINS */
+coinDisplay.innerText = coins + " points";
+
+/* STATS */
+orderCount.innerText = orders.length;
+wishCount.innerText = wishlist.length;
+coinCount.innerText = coins;
+
+/* LOGOUT */
+function logout(){
+    localStorage.clear();
+    window.location.href="../main/index.html";
+}
+
+</script>
+
+</body>
+</html>
