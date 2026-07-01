@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Information</title>
+    <link rel="stylesheet" href="form.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<style>
+body{
+    padding: 0;
+    margin: 0;
+    background-color: rgba(144, 195, 141, 0.211);
+}
+
+#sellForm {
+    width: 90%;
+    max-width: 500px;
+    margin: 20px auto;
+    background: #ffffff;
+    border: 2px solid #ff7f50;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    display: block;
+}
+
+#sellForm h2 {
+    text-align: center;
+    color: #ff4500;
+}
+
+#sellForm input, #sellForm button {
+    width: 100%;
+    padding: 10px 2px;
+    margin: 8px 2px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+#sellForm button {
+    background-color: #ee7b51;
+    color: white;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+}
+
+#sellForm button:hover {
+    background-color: #ff4500;
+}
+
+#selectedCategory {
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+</style>
+
+<body>
+    <!-- Back Arrow -->
+    <a href="sell.html" class="back-arrow">
+        <i class="fas fa-arrow-left"></i>
+    </a>
+
+<div id="sellForm">
+    <h2>Sell Your Item</h2>
+
+    <p id="selectedCategory"></p>
+
+    <form onsubmit="saveProduct(event)">
+
+        <input type="text" id="category" placeholder="Category" readonly>
+
+        <input type="text" id="itemName" placeholder="Item Name" required>
+
+        <input type="number" id="price" placeholder="Price (₹)" required>
+
+        <input type="text" id="sellerName" placeholder="Your Name" required>
+
+        <input type="email" id="email" placeholder="Email" required>
+
+        <input type="text" id="contact" placeholder="Contact Number" required>
+
+        <input type="text" id="room" placeholder="Room/Block No" required>
+
+        <input type="file" id="imageInput" accept="image/*" required>
+
+        <input type="number" id="age" placeholder="How old is this item? (years)" required>
+
+        <button type="submit">Submit</button>
+
+    </form>
+</div>
+
+<script>
+// ✅ CATEGORY AUTO FILL (FIXED)
+window.addEventListener('DOMContentLoaded', () => {
+    const params = new URLSearchParams(window.location.search);
+    const category = params.get('category');
+
+    if(category) {
+        document.getElementById('category').value = category;
+        document.getElementById('selectedCategory').innerText = "Selected Category: " + category;
+    }
+});
+
+
+// ✅ SAVE PRODUCT (FIXED + CLEAN)
+function saveProduct(event) {
+    event.preventDefault();
+
+    const file = document.getElementById("imageInput").files[0];
+
+    const reader = new FileReader();
+
+    reader.onload = function () {
+
+        const product = {
+            name: document.getElementById("itemName").value,
+            price: document.getElementById("price").value,
+            seller: document.getElementById("sellerName").value,
+            email: document.getElementById("email").value,
+            contact: document.getElementById("contact").value,
+            room: document.getElementById("room").value,
+            age: document.getElementById("age").value,
+
+           
+            category: document.getElementById("category").value.toLowerCase().trim(),
+
+            image: reader.result
+        };
+
+        let products = JSON.parse(localStorage.getItem("products")) || [];
+        products.push(product);
+        localStorage.setItem("products", JSON.stringify(products));
+
+       
+window.location.href = "../Main/index.html";
+    };
+
+    if(file){
+        reader.readAsDataURL(file);
+    } else {
+        alert("Please upload an image!");
+    }
+}
+</script>
+
+</body>
+</html>
