@@ -1,0 +1,101 @@
+
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to bottom right, #fef9ef, #d0f0c0);
+    margin: 0;
+    padding: 0;
+}
+
+.topbar {
+    background-color: #ff7f50;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+
+.category-box {
+    width: 90%;
+    max-width: 600px;
+    margin: 20px auto;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    padding: 20px;
+}
+
+.category-box h3 {
+    text-align: center;
+    color: #ff4500;
+}
+
+.item {
+    background: #fff0f5;
+    margin: 10px 0;
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    transition: all 0.2s;
+}
+
+.item:hover {
+    background: #ffdab9;
+    transform: scale(1.02);
+}
+
+/* SELL FORM */
+#sellForm {
+    width: 90%;
+    max-width: 500px;
+    margin: 20px auto;
+    background: #ffffff;
+    border: 2px solid #ff7f50;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    display: none;
+}
+
+#sellForm h2 {
+    text-align: center;
+    color: #ff4500;
+}
+
+#sellForm input, #sellForm button {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+#sellForm button {
+    background-color: #ff7f50;
+    color: white;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#sellForm button:hover {
+    background-color: #ff4500;
+}
+
+.back-arrow {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 22px;
+    color: black;
+    text-decoration: none;
+}
+
+.back-arrow:hover {
+    color: #555;
+}
